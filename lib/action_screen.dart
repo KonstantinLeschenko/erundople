@@ -1,5 +1,6 @@
 import 'package:awesome_button/awesome_button.dart';
 import 'package:erundople/questions.dart';
+import 'package:erundople/start_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -17,14 +18,26 @@ class _ActionScreenState extends State<ActionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.cyan,
       appBar: AppBar(
+        backgroundColor: Colors.deepPurpleAccent,
         title: Text('$currentQuestion / 30'),
       ),
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(questions[currentQuestion].word),
+            Text(
+              questions[currentQuestion].word,
+              style: const TextStyle(fontSize: 40, color: Colors.white),
+            ),
+            const SizedBox(
+              height: 60,
+            ),
+            const Text(
+              'это',
+              style: TextStyle(color: Colors.white),
+            ),
             const SizedBox(
               height: 60,
             ),
@@ -41,7 +54,7 @@ class _ActionScreenState extends State<ActionScreen> {
         blurRadius: 10.0,
         height: 40,
         width: MediaQuery.of(context).size.width,
-        color: Colors.blue,
+        color: Colors.deepPurpleAccent,
         child: Text(answer, style: const TextStyle(color: Colors.white)),
         onTap: () {
           if (answers[answer]!) {
@@ -68,30 +81,22 @@ class _ActionScreenState extends State<ActionScreen> {
         currentQuestion += 1;
       });
     } else {
-      print('Конец');
-
       showDialog(
           context: context,
-          builder: (_) => Dialog(
-                  child: SizedBox(
-                width: MediaQuery.of(context).size.width - 200,
-                height: MediaQuery.of(context).size.height - 200,
-                child: Center(
-                    child: Column(
-                  children: [
-                    Text('Результат $correct из 30'),
-                    const SizedBox(
-                      height: 150,
-                    ),
-                    TextButton(
-                        child: const Text('OK'),
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const ActionScreen()));
-                        })
-                  ],
-                )),
-              )));
+          builder: (_) => AlertDialog(
+                title: const Text('Ерундопель'),
+                content: Text('Результат $correct из 30'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context, 'OK');
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const StartPage()));
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              ));
     }
   }
 }

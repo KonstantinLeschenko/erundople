@@ -11,7 +11,7 @@ class StartPage extends StatelessWidget {
         child: IconButton(
           icon: const Icon(Icons.arrow_right, size: 50,),
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ActionScreen()));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ActionScreen()));
           },),
       ),
     );
