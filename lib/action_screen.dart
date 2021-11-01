@@ -77,7 +77,7 @@ class _ActionScreenState extends State<ActionScreen> {
             showDialog(context: context,
                 builder: (_)=> AlertDialog(
                   title: const Text('Ерундопель'),
-                  content: Text('Это правильный ответ'),
+                  content: const Text('Это правильный ответ'),
                   actions: [
                     TextButton(onPressed: () {
                       Navigator.of(context, rootNavigator: true).pop();
@@ -85,7 +85,7 @@ class _ActionScreenState extends State<ActionScreen> {
                       correct += 1;
 
                     },
-                        child: Text('OK'))
+                        child: const Text('OK'))
                   ],
 
                 ));
@@ -95,13 +95,13 @@ class _ActionScreenState extends State<ActionScreen> {
             showDialog(context: context,
                 builder: (_)=> AlertDialog(
                   title: const Text('Ерундопель'),
-                  content: Text('Это НЕправильный ответ'),
+                  content: const Text('Это НЕправильный ответ'),
                   actions: [
                     TextButton(onPressed: () {
                       Navigator.of(context, rootNavigator: true).pop();
                       setQuestion(false);
                     },
-                        child: Text('OK'))
+                        child: const Text('OK'))
                   ],
 
                 ));
