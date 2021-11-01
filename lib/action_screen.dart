@@ -21,7 +21,7 @@ class _ActionScreenState extends State<ActionScreen> {
       backgroundColor: Colors.cyan,
       appBar: AppBar(
         backgroundColor: Colors.deepPurpleAccent,
-        title: Text('$currentQuestion / 30'),
+        title: Text('${currentQuestion+1} / 30'),
       ),
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -85,7 +85,7 @@ class _ActionScreenState extends State<ActionScreen> {
           context: context,
           builder: (_) => AlertDialog(
                 title: const Text('Ерундопель'),
-                content: Text('Результат $correct из 30'),
+                content: Text('Результат $correct из ${questions.length}'),
                 actions: [
                   TextButton(
                     onPressed: () {

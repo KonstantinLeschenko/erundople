@@ -7,9 +7,11 @@ class StartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.cyan,
       body: Center(
         child: IconButton(
-          icon: const Icon(Icons.arrow_right, size: 50,),
+          icon: Image.asset('assets/start.png'),
+          iconSize: 200,
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ActionScreen()));
           },),
