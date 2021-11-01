@@ -29,7 +29,7 @@ class _ActionScreenState extends State<ActionScreen> {
             gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          stops: [0.05, 0.5, 0.99],
+          stops: [0.05, 0.5, 0.95],
           colors: [Color(0xFF79b514), Color(0xFFe6fb8e), Color(0xFF79b514)],
         ))),
         child: Column(
