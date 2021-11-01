@@ -18,31 +18,47 @@ class _ActionScreenState extends State<ActionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan,
       appBar: AppBar(
-        backgroundColor: Colors.deepPurpleAccent,
+        backgroundColor: Colors.orange,
         title: Text('${currentQuestion+1} / ${questions.length}'),
       ),
-      body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              questions[currentQuestion].word,
-              style: const TextStyle(fontSize: 40, color: Colors.white),
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-            const Text(
-              'это',
-              style: TextStyle(color: Colors.white),
-            ),
-            const SizedBox(
-              height: 60,
-            ),
-            getButtons(questions[currentQuestion].answers)
-          ]),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: (const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: [0.05, 0.5, 0.99],
+              colors: [Color(0xFF79b514), Color(0xFFe6fb8e), Color(0xFF79b514)],
+            )
+        )),
+
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 100,
+              ),
+
+              Text(
+                questions[currentQuestion].word,
+                style: TextStyle(fontSize: 60, color: Colors.green[900]),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              Text(
+                'это',
+                style: TextStyle(fontSize:30, color: Colors.green[900]),
+              ),
+              const SizedBox(
+                height: 120,
+              ),
+              getButtons(questions[currentQuestion].answers)
+            ]),
+      ),
     );
   }
 
@@ -52,16 +68,47 @@ class _ActionScreenState extends State<ActionScreen> {
       buttons.add(AwesomeButton(
         borderRadius: BorderRadius.circular(25.0),
         blurRadius: 10.0,
-        height: 40,
+        height: 60,
         width: MediaQuery.of(context).size.width,
-        color: Colors.deepPurpleAccent,
-        child: Text(answer, style: const TextStyle(color: Colors.white)),
+        color: Colors.green,
+        child: Text(answer, style: const TextStyle(color: Colors.white, fontSize: 22), textAlign: TextAlign.center,),
         onTap: () {
           if (answers[answer]!) {
-            setQuestion(true);
-            correct += 1;
+            showDialog(context: context,
+                builder: (_)=> AlertDialog(
+                  title: const Text('Ерундопель'),
+                  content: Text('Это правильный ответ'),
+                  actions: [
+                    TextButton(onPressed: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+                      setQuestion(true);
+                      correct += 1;
+
+                    },
+                        child: Text('OK'))
+                  ],
+
+                ));
+
+
           } else {
-            setQuestion(false);
+            showDialog(context: context,
+                builder: (_)=> AlertDialog(
+                  title: const Text('Ерундопель'),
+                  content: Text('Это НЕправильный ответ'),
+                  actions: [
+                    TextButton(onPressed: () {
+                      Navigator.of(context, rootNavigator: true).pop();
+                      setQuestion(false);
+                    },
+                        child: Text('OK'))
+                  ],
+
+                ));
+
+
+
+
           }
         },
       ));
