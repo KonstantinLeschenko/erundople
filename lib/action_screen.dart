@@ -21,7 +21,7 @@ class _ActionScreenState extends State<ActionScreen> {
       backgroundColor: Colors.cyan,
       appBar: AppBar(
         backgroundColor: Colors.deepPurpleAccent,
-        title: Text('${currentQuestion+1} / 30'),
+        title: Text('${currentQuestion+1} / ${questions.length}'),
       ),
       body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
